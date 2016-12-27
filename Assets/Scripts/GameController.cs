@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -16,8 +18,10 @@ public class GameController : MonoBehaviour {
 
     public RabbitController rabbit;
     public GameObject blocks;
+    public AudioSource audioSource;
 
     void Start () {
+        audioSource.Pause();
         Ready();		
 	}
 
@@ -46,6 +50,8 @@ public class GameController : MonoBehaviour {
     {
         state = State.Play;
 
+        audioSource.Play();
+
         rabbit.SetSteerAcitve(true);
         blocks.SetActive(true);
 
@@ -54,6 +60,8 @@ public class GameController : MonoBehaviour {
     void GameOver()
     {
         state = State.GameOver;
+
+        audioSource.Pause();
 
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = false;
