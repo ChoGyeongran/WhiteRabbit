@@ -10,7 +10,7 @@ public class RabbitController : MonoBehaviour {
     //bool isJump = false;
     bool isDead;
 
-    public float jumpVelocity;
+    //public float jumpVelocity;
     public GameObject sprite;
 
 
@@ -19,8 +19,10 @@ public class RabbitController : MonoBehaviour {
     float gravity = 0.0f;     // 중력느낌용
     int direction = 0;       // 0:정지상태, 1:점프중, 2:다운중
     // 설정값
-    const float jump_speed = 0.2f;  // 점프속도
-    const float jump_accell = 0.01f; // 점프가속
+    //테스트를 위해 public
+    //기본 private const
+    const float jump_speed = 0.25f;  // 점프속도 점프높이
+    const float jump_accell = 0.018f; // 점프가속
     const float y_base = -3.45f;      // 캐릭터가 서있는 기준점
     //
 

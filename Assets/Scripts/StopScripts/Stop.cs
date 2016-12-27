@@ -8,6 +8,7 @@ public class Stop : MonoBehaviour {
     public Canvas canvas;
     public RabbitController rabbit;
     public GameObject blocks;
+    public AudioSource audioSource;
 
     void Start()
     {
@@ -26,5 +27,8 @@ public class Stop : MonoBehaviour {
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = false;
         //SceneManager.LoadScene(1);
+
+        //음악 정지
+        audioSource.Pause();
     }
 }

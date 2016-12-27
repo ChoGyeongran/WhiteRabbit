@@ -7,6 +7,7 @@ public class StopMenu : MonoBehaviour {
     public Canvas canvas;
     public RabbitController rabbit;
     public GameObject blocks;
+    public AudioSource audioSource;
 
     public void StopContinue()
     {
@@ -19,6 +20,9 @@ public class StopMenu : MonoBehaviour {
         //Ground를 움직인다
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = true;
+
+        //음악 재생
+        audioSource.Play();
     }
 
     public void StopRetry()

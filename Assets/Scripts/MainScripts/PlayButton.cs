@@ -2,9 +2,10 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class MainStage : MonoBehaviour {
+public class PlayButton : MonoBehaviour {
 
-    public void Select()
+    
+    void OnMouseDown()
     {
         SceneManager.LoadScene(1);
     }
