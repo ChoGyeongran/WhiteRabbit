@@ -15,11 +15,14 @@ public class GameController : MonoBehaviour {
     }
 
     State state;
+    int score;
 
     public RabbitController rabbit;
     public GameObject blocks;
     public AudioSource audioSource;
     public CSVFileReader csvController;
+    
+    public Text scoreLabel;
 
     void Start () {
         audioSource.Pause();
@@ -91,4 +94,11 @@ public class GameController : MonoBehaviour {
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void IncreaseScore()
+    {
+        score+=10;
+        scoreLabel.text = "Score : " + score;
+    }
+
 }
