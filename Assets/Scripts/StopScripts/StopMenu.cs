@@ -21,6 +21,9 @@ public class StopMenu : MonoBehaviour {
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = true;
 
+        BlockScrollObject[] blockscrollObjects = GameObject.FindObjectsOfType<BlockScrollObject>();
+        foreach (BlockScrollObject so in blockscrollObjects) so.enabled = true;
+
         //음악 재생
         audioSource.Play();
     }

@@ -21,8 +21,8 @@ public class RabbitController : MonoBehaviour {
     // 설정값
     //테스트를 위해 public
     //기본 private const
-    const float jump_speed = 0.25f;  // 점프속도 점프높이
-    const float jump_accell = 0.018f; // 점프가속
+    const float jump_speed = 0.23f;  // 점프속도 점프높이
+    const float jump_accell = 0.016f; // 점프가속
     const float y_base = -3.45f;      // 캐릭터가 서있는 기준점
     //
 

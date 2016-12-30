@@ -10,10 +10,10 @@ using System.Text;
 
 public class CSVFileReader : MonoBehaviour {
 
-    public List<Note> notes = new List<Note>();
+    public List<String[]> list = new List<String[]>();
 
     String strLineValue = null;
-    String[] values = null;    
+    String[] values = null;
 
     void Awake()
     {
@@ -32,23 +32,18 @@ public class CSVFileReader : MonoBehaviour {
         {
             // Must not be empty.
             if (String.IsNullOrEmpty(strLineValue)) return;
-
             values = strLineValue.Split(',');
-            Note temp = new Note(values);
-            notes.Add(temp);
+
+            print(values.Length);
+            list.Add(values);
             //values[x]; 의 형태로 접근할 수 있습니다.
         }
 
-        //        print(notes.Count);
-        //        print(notes[0].note.Length);
-        //        print(notes[0].note[0]);
-/*
-        string sss = "";
-        for (int i = 0; i < notes[1].note.Length; i++)
-            sss += notes[1].note[i];
 
-        print(sss);
-*/
+        for (int i = 0; i < list[0].Length; i++)
+            print(list[0][i]);
+
+
         
     }
 }

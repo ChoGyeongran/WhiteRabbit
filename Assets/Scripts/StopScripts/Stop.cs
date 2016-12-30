@@ -26,6 +26,10 @@ public class Stop : MonoBehaviour {
         //Ground를 멈춘다
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = false;
+
+        BlockScrollObject[] blockscrollObjects = GameObject.FindObjectsOfType<BlockScrollObject>();
+        foreach (BlockScrollObject so in blockscrollObjects) so.enabled = false;
+
         //SceneManager.LoadScene(1);
 
         //음악 정지

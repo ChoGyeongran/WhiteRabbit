@@ -9,6 +9,7 @@ public class ScrollObject : MonoBehaviour {
 
     void Update()
     {
+        //일정시간마다 오브젝트를 왼쪽으로 이동
         transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
 
         if (transform.position.x <= endPosition) ScrollEnd();
@@ -16,8 +17,11 @@ public class ScrollObject : MonoBehaviour {
 
 	void ScrollEnd ()
     {
+        //시작지점으로 다시 이동
         transform.Translate(-1 * (endPosition - startPosition), 0, 0);
 
         SendMessage("OnScrollEnd", SendMessageOptions.DontRequireReceiver);
     }
+
+    
 }

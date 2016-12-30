@@ -19,11 +19,28 @@ public class GameController : MonoBehaviour {
     public RabbitController rabbit;
     public GameObject blocks;
     public AudioSource audioSource;
+    public CSVFileReader csvController;
 
     void Start () {
         audioSource.Pause();
-        Ready();		
+        GameStart();
+        //        Ready();
 	}
+
+    void SetBlocksActive(bool active)
+    {
+        blocks.SetActive(false);
+        Transform[] AllData = blocks.GetComponentsInChildren<Transform>();
+
+//        print(csvController.notes[0].note[0]);
+
+        foreach (Transform Obj in AllData)
+        {
+//            if (Obj.name == "Blocks" || Obj.name == "Word1" || Obj.name == "Word2" || Obj.name == "Word3") continue;
+
+            Obj.gameObject.SetActive(active); //true 밖에 안됨 
+        }
+    }
 
     void LateUpdate()
     {
@@ -43,6 +60,7 @@ public class GameController : MonoBehaviour {
         state = State.Ready;
 
         rabbit.SetSteerAcitve(false);
+        //SetBlocksActive(false);
         blocks.SetActive(false);
     }
 
@@ -53,8 +71,8 @@ public class GameController : MonoBehaviour {
         audioSource.Play();
 
         rabbit.SetSteerAcitve(true);
-        blocks.SetActive(true);
-
+        SetBlocksActive(true);
+        //blocks.SetActive(true);
         //rabbit.DoJump();
     }
     void GameOver()
@@ -65,6 +83,9 @@ public class GameController : MonoBehaviour {
 
         ScrollObject[] scrollObjects = GameObject.FindObjectsOfType<ScrollObject>();
         foreach (ScrollObject so in scrollObjects) so.enabled = false;
+
+        BlockScrollObject[] blockscrollObjects = GameObject.FindObjectsOfType<BlockScrollObject>();
+        foreach (BlockScrollObject so in blockscrollObjects) so.enabled = false;
     }
     void Reload()
     {
