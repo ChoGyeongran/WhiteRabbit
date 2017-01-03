@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class BlockScrollObject : MonoBehaviour
 {
@@ -85,9 +86,10 @@ public class BlockScrollObject : MonoBehaviour
 //        transform.gameObject.SetActive(false);
 //        AllData[0].gameObject.SetActive(false);
 
-        
+        //블록을 전부 비활성화
         for (int i = 0; i < 16; i++)
             transform.FindChild(blockName[i]).gameObject.SetActive(false);
+
         string sss = "";
         for (int i = 0; i < csvFileReader.notes[line].note.Length; i++)
         {
@@ -98,11 +100,20 @@ public class BlockScrollObject : MonoBehaviour
 
         for (int i = 0; i < csvFileReader.notes[line].note.Length; i++)
         {
-            int exist = Convert.ToInt32(csvFileReader.notes[line].note[i]);
-            if (exist == 1)
-                transform.FindChild(blockName[i]).gameObject.SetActive(true);
-//                AllData[i + 1].gameObject.SetActive(true);
+            if (csvFileReader.notes[line].note[0].Equals("E")) ClearCheck();
+            else
+            {
+                int exist = Convert.ToInt32(csvFileReader.notes[line].note[i]);
+                if (exist == 1)
+                    transform.FindChild(blockName[i]).gameObject.SetActive(true);
+                //                AllData[i + 1].gameObject.SetActive(true);
+            }
         }
+    }
+
+    void ClearCheck()
+    {
+        SceneManager.LoadScene(4);
     }
 
 }
