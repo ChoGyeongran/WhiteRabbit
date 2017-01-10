@@ -1,19 +1,17 @@
-﻿using System;
-using System.Data;
-using System.ComponentModel;
-using System.Linq;
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MySql.Data;
-using MySql.Data.MySqlClient;
 
 public class DatabaseConnect {
 
-	// Use this for initialization
-	void Start () {
-        
+    public string inputId;
+    public int inputScore;
+
+    string CreateIDURL = "localhost/InsertID.php";
+
+    // Use this for initialization
+    void Start () {
+        /*
         MySqlConnection Con = new MySqlConnection();
         Con.ConnectionString = "Data Source=localhost;Database=TEST;"
                                                               + "User Id=root;Password=tlfcjs42" + ";charset=euckr";
@@ -33,11 +31,20 @@ public class DatabaseConnect {
 
         R.Close();
         Con.Close();
-
+        */
     }
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.Space)) CreateID(inputId, inputScore);
+    }
+
+    public void CreateID(string id, int score)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("idPost", id);
+        form.AddField("scorePost", score);
+
+        WWW www = new WWW(CreateIDURL, form);
+    }
 }
