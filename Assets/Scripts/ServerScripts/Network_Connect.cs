@@ -7,8 +7,7 @@ public class Network_Connect : Photon.MonoBehaviour {
 
     void OnJoinedRoom()
     {
-        SceneManager.LoadScene(0);
-
+        SceneManager.LoadScene(5);
     }
 
     // Use this for initialization

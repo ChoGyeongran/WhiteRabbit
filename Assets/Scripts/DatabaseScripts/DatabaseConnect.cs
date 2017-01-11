@@ -7,7 +7,7 @@ public class DatabaseConnect {
     public string inputId;
     public int inputScore;
 
-    string CreateIDURL = "localhost/InsertID.php";
+    string CreateIdURL = "localhost/InsertID.php";
 
     // Use this for initialization
     void Start () {
@@ -36,15 +36,15 @@ public class DatabaseConnect {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space)) CreateID(inputId, inputScore);
+        if (Input.GetKeyDown(KeyCode.Space)) CreateId(inputId, inputScore);
     }
 
-    public void CreateID(string id, int score)
+    public void CreateId(string id, int score)
     {
         WWWForm form = new WWWForm();
         form.AddField("idPost", id);
         form.AddField("scorePost", score);
 
-        WWW www = new WWW(CreateIDURL, form);
+        WWW www = new WWW(CreateIdURL, form);
     }
 }
