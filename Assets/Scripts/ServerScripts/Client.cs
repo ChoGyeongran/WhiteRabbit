@@ -1,78 +1,71 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-
+using System.IO;
 using System.Net.Sockets;
-using System.Net;
-using System.Text;
+using UnityEngine;
+using UnityEngine.UI;
 
-public class Client : MonoBehaviour {
-/*
-    private Socket m_Socket;
+public class Client : MonoBehaviour
+{
 
-    public string iPAdress = "192.168.0.15";
-    public const int kPort = 9999;
+    private bool socketReady;
+    private TcpClient socket;
+    private NetworkStream stream;
+    private StreamWriter writer;
+    private StreamReader reader;
 
-    private int SenddataLength;                     // Send Data Length. (byte)
-    private int ReceivedataLength;                     // Receive Data Length. (byte)
-
-    private byte[] Sendbyte;                        // Data encoding to send. ( to Change bytes)
-    private byte[] Receivebyte = new byte[2000];    // Receive data by this array to save.
-    private string ReceiveString;                     // Receive bytes to Change string. 
-
-    void Awake()
+    public void ConnectToServer()
     {
-        //=======================================================
-        // Socket create.
-        m_Socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-        m_Socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.SendTimeout, 10000);
-        m_Socket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 10000);
-
-        //=======================================================
-        // Socket connect.
-        try
-        {
-            IPAddress ipAddr = System.Net.IPAddress.Parse(iPAdress);
-            IPEndPoint ipEndPoint = new System.Net.IPEndPoint(ipAddr, kPort);
-            m_Socket.Connect(ipEndPoint);
-        }
-        catch (SocketException SCE)
-        {
-            Debug.Log("Socket connect error! : " + SCE.ToString());
+        if (socketReady)
             return;
-        }
 
-        //=======================================================
-        // Send data write.
-        StringBuilder sb = new StringBuilder(); // String Builder Create
-        sb.Append("Test 1 - By Mac!!");
-        sb.Append("Test 2 - By Mac!!");
+        string host = "192.168.0.15";
+        int port = 6321;
+        
+        /*
+        string h;
+        int p;
+        h = GameObject.Find("HostInput").GetComponent<InputField>().text;
+        if (h != "")
+            host = h;
+        int.TryParse(GameObject.Find("PortInput").GetComponent<InputField>().text, out p);
+        if (p != 0)
+            port = p;
+        */
 
         try
         {
-            //=======================================================
-            // Send.
-            SenddataLength = Encoding.Default.GetByteCount(sb.ToString());
-            Sendbyte = Encoding.Default.GetBytes(sb.ToString());
-            m_Socket.Send(Sendbyte, Sendbyte.Length, 0);
-
-            //=======================================================
-            // Receive.
-            m_Socket.Receive(Receivebyte);
-            ReceiveString = Encoding.Default.GetString(Receivebyte);
-            ReceivedataLength = Encoding.Default.GetByteCount(ReceiveString.ToString());
-            Debug.Log("Receive Data : " + ReceiveString + "(" + ReceivedataLength + ")");
+            socket = new TcpClient(host, port);
+            stream = socket.GetStream();
+            writer = new StreamWriter(stream);
+            reader = new StreamReader(stream);
+            socketReady = true;
         }
-        catch (SocketException err)
+        catch (Exception e)
         {
-            Debug.Log("Socket send or receive error! : " + err.ToString());
+            Debug.Log("Socket error : " + e.Message);
+        }
+
+    }
+
+    private void Update()
+    {
+        if (socketReady)
+        {
+            if (stream.DataAvailable)
+            {
+                string data = reader.ReadLine();
+                if (data != null)
+                    OnIncomingData(data);
+            }
         }
     }
 
-    void OnApplicationQuit()
+    private void OnIncomingData(string data)
     {
-        m_Socket.Close();
-        m_Socket = null;
+        Debug.Log("Server : " + data);
     }
-    */
+
 }
+
