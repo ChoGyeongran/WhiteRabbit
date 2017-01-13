@@ -46,6 +46,10 @@ public class BlockScrollObject : MonoBehaviour
         transform.Translate(-1 * speed * Time.deltaTime, 0, 0);
 
         if (transform.position.x <= endPosition) ScrollEnd();
+
+        if (Input.GetKeyDown(KeyCode.C))
+            ClearCheck();
+
     }
 
     void ScrollEnd()
@@ -113,6 +117,8 @@ public class BlockScrollObject : MonoBehaviour
 
     void ClearCheck()
     {
+        int data = GameController.GetScore();
+        PlayerPrefs.SetInt("Score", data);
         SceneManager.LoadScene(4);
     }
 

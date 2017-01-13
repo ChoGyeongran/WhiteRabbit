@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour {
     }
 
     State state;
-    int score;
+    static int score;
 
     public RabbitController rabbit;
     public GameObject blocks;
@@ -100,5 +100,9 @@ public class GameController : MonoBehaviour {
         score+=10;
         scoreLabel.text = "Score : " + score;
     }
-
+    
+    static public int GetScore()
+    {
+        return score;
+    }
 }
