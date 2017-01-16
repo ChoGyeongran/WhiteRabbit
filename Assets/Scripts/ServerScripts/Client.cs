@@ -6,6 +6,9 @@ using System.Net.Sockets;
 using UnityEngine;
 using UnityEngine.UI;
 
+//임시-------------------------------------------------
+using UnityEngine.SceneManagement;
+
 public class Client : MonoBehaviour
 {
 
@@ -15,7 +18,7 @@ public class Client : MonoBehaviour
     public string clientName;
 
     private bool socketReady; //서버 연결 여부
-    private TcpClient socket;
+    //private TcpClient socket;
     private NetworkStream stream;
     private StreamWriter writer;
     private StreamReader reader;
@@ -47,8 +50,11 @@ public class Client : MonoBehaviour
 
         try
         {
-            socket = new TcpClient(host, port);
-            stream = socket.GetStream(); //소켓 스트림을 받아온다.
+            Singleton.Instance.socket = new TcpClient(host, port);
+            stream = Singleton.Instance.socket.GetStream(); //소켓 스트림을 받아온다.
+
+            //socket = new TcpClient(host, port);
+            //stream = socket.GetStream(); //소켓 스트림을 받아온다.
             writer = new StreamWriter(stream); //스트림 쓰는애
             reader = new StreamReader(stream); //스트림 읽는애
             socketReady = true;
@@ -120,7 +126,7 @@ public class Client : MonoBehaviour
 
         writer.Close();
         reader.Close();
-        socket.Close();
+        //socket.Close();
         socketReady = false;
     }
 
@@ -132,6 +138,13 @@ public class Client : MonoBehaviour
     private void OnDisable()
     {
         CloseSocket();
+    }
+
+
+    //임시-------------------------------------------------
+    public void NextButton()
+    {
+        SceneManager.LoadScene(6);
     }
 
 }

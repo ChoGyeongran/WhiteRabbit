@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 public class MainButton : MonoBehaviour {
     public void EpisodeButton()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(3);
     }
 
     public void SettingButton()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void BackButton()

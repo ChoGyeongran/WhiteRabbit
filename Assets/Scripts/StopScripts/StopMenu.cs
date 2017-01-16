@@ -35,6 +35,6 @@ public class StopMenu : MonoBehaviour {
     }
     public void StopHome()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }

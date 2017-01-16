@@ -8,7 +8,7 @@ public class LoginCheck : MonoBehaviour {
 
     public InputField inputId;
 
-    string CheckIdURL = "localhost/CheckID.php";
+    string CheckIdURL = "192.168.0.15/CheckID.php";
 
     // Use this for initialization
     void Start () {
@@ -19,10 +19,12 @@ public class LoginCheck : MonoBehaviour {
 	void Update () {
 		
 	}
-
+   
     public void LoginButton()
     {
-        StartCoroutine( CheckId(inputId.text));
+        PlayerPrefs.SetString("Id", "1");
+        SceneManager.LoadScene(1);
+        //StartCoroutine( CheckId(inputId.text));
     }
 
     IEnumerator CheckId(string id)
@@ -37,10 +39,12 @@ public class LoginCheck : MonoBehaviour {
 
         if (www.text.Equals("y")) {
             Debug.Log("successful");
-            SceneManager.LoadScene(0);
+            PlayerPrefs.SetString("Id", id);
+            SceneManager.LoadScene(1);
         }
         else {
             Debug.Log("fail");
         }
     }
+
 }
