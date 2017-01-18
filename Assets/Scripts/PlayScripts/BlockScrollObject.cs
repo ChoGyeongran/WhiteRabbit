@@ -121,5 +121,4 @@ public class BlockScrollObject : MonoBehaviour
         PlayerPrefs.SetInt("Score", data);
         SceneManager.LoadScene(5);
     }
-
 }

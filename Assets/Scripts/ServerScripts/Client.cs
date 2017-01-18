@@ -15,7 +15,7 @@ public class Client : MonoBehaviour
     public GameObject chatContainer;
     public GameObject messagePrefab;
 
-    public string clientName;
+    string clientName;
 
     private bool socketReady; //서버 연결 여부
     //private TcpClient socket;
@@ -92,6 +92,7 @@ public class Client : MonoBehaviour
 
         if (data == "%NAME")
         {
+            clientName = PlayerPrefs.GetString("Id");
             Send("&NAME|" + clientName);
             return;
         }
@@ -144,7 +145,7 @@ public class Client : MonoBehaviour
     //임시-------------------------------------------------
     public void NextButton()
     {
-        SceneManager.LoadScene(6);
+        SceneManager.LoadScene(1);
     }
 
 }

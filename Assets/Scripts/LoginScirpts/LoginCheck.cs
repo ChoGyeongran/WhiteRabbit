@@ -22,11 +22,11 @@ public class LoginCheck : MonoBehaviour {
    
     public void LoginButton()
     {
-        PlayerPrefs.SetString("Id", "1");
-        SceneManager.LoadScene(1);
-        //StartCoroutine( CheckId(inputId.text));
+        //PlayerPrefs.SetString("Id", "1");
+        //SceneManager.LoadScene(1);
+        StartCoroutine( CheckId(inputId.text));
     }
-
+    
     IEnumerator CheckId(string id)
     {
         WWWForm form = new WWWForm();
@@ -40,7 +40,7 @@ public class LoginCheck : MonoBehaviour {
         if (www.text.Equals("y")) {
             Debug.Log("successful");
             PlayerPrefs.SetString("Id", id);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(6);
         }
         else {
             Debug.Log("fail");

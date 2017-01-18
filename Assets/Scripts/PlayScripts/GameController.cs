@@ -25,6 +25,7 @@ public class GameController : MonoBehaviour {
     public Text scoreLabel;
 
     void Start () {
+        score = 0;
         audioSource.Pause();
         GameStart();
         //        Ready();

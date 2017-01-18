@@ -5,8 +5,9 @@ using UnityEngine.SceneManagement;
 using System;
 using System.Net.Sockets;
 using System.IO;
+using UnityEngine.UI;
 
-public class OKButton : MonoBehaviour {
+public class ClearScript : MonoBehaviour {
 
     int score;
     string id;
@@ -19,6 +20,8 @@ public class OKButton : MonoBehaviour {
     {
         score = PlayerPrefs.GetInt("Score");
         id = PlayerPrefs.GetString("Id");
+
+        GameObject.Find("Score").GetComponent<Text>().text = score.ToString();
 
         stream = Singleton.Instance.socket.GetStream(); //소켓 스트림을 받아온다.
         writer = new StreamWriter(stream); //스트림 쓰는애
